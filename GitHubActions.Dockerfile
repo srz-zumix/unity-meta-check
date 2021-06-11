@@ -18,4 +18,4 @@ RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-
 # COPY --from=builder /go/src/unity-meta-check/dist/* /usr/bin/
 COPY --from=builder /go/src/unity-meta-check-bins/linux-amd64/* /usr/bin/
 COPY unity-meta-check-github-actions.sh /unity-meta-check-github-actions.sh
-ENTRYPOINT ["unity-meta-check-github-actions"]
+ENTRYPOINT ["/unity-meta-check-github-actions.sh"]
