@@ -74,6 +74,6 @@ if "${INPUT_NO_IGNORE_CASE}"; then
 fi
 
 unity-meta-check ${COMMON_ARGS} ${META_CHECK_OPTS} "${INPUT_PATH}" \
-    | junit() \
-    | auto_fix() \
-    | pr_comment()
+    | junit \
+    | auto_fix \
+    | pr_comment
