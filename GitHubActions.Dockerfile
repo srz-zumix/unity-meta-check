@@ -8,7 +8,7 @@
 # 	mv ./dist/unity-meta-check-github-pr-comment-linux-amd64 ./dist/unity-meta-check-github-pr-comment && \
 # 	mv ./dist/unity-meta-autofix-linux-amd64 ./dist/unity-meta-autofix
 
-FROM debian:buster-slim
+FROM debian:buster-slim as builder
 RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
 RUN git clone https://github.com/DeNA/unity-meta-check-bins.git /go/src/unity-meta-check-bins
 
