@@ -1,3 +1,4 @@
+FROM debian:buster-slim as builder
 # FROM golang:1.15-alpine3.12 as builder
 # RUN apk add --no-cache make
 # WORKDIR /go/src/unity-meta-check
@@ -8,7 +9,6 @@
 # 	mv ./dist/unity-meta-check-github-pr-comment-linux-amd64 ./dist/unity-meta-check-github-pr-comment && \
 # 	mv ./dist/unity-meta-autofix-linux-amd64 ./dist/unity-meta-autofix
 
-FROM debian:buster-slim as builder
 RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
 RUN git clone https://github.com/DeNA/unity-meta-check-bins.git /go/src/unity-meta-check-bins
 
