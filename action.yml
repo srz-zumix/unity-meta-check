@@ -91,10 +91,17 @@ inputs:
       custom template file (unity-meta-check-github-pr-comment)
     default: ""
     required: false
+  token:
+    description: |
+     GITHUB_TOKEN (contents: write, pull-requests: write) or a repo scoped Personal Access Token (PAT).
+    default: ${{ github.token }}
+    required: false
 
 runs:
   using: 'docker'
   image: 'GitHubActions.Dockerfile'
+  env:
+    GITHUB_TOKEN: ${{ inputs.token }}
   args:
     - ${{ inputs.path }}
     - ${{ inputs.debug }}
