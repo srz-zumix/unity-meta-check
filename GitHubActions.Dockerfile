@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine3.12 as builder
+# FROM golang:1.15-alpine3.12 as builder
 # RUN apk add --no-cache make
 # WORKDIR /go/src/unity-meta-check
 # COPY . .
@@ -8,8 +8,7 @@ FROM golang:1.15-alpine3.12 as builder
 # 	mv ./dist/unity-meta-check-github-pr-comment-linux-amd64 ./dist/unity-meta-check-github-pr-comment && \
 # 	mv ./dist/unity-meta-autofix-linux-amd64 ./dist/unity-meta-autofix
 
-# FROM debian:buster-slim
-# https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
+FROM debian:buster-slim
 RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
 RUN git clone git@github.com:dena/unity-meta-check-bins /go/src/unity-meta-check-bins
 
