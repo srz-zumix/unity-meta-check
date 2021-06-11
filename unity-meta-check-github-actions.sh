@@ -5,7 +5,7 @@ cd "${GITHUB_WORKSPACE}" || exit
 COMMON_ARGS="${INPUT_DEBUG}" "${INPUT_SILENT}"
 
 function junit() {
-    cat
+    cat -
 }
 
 function auto_fix() {
@@ -20,9 +20,9 @@ function auto_fix() {
         if "${INPUT_FIX_MISSING}"; then
             AUTO_FIX_OPTS=${AUTO_FIX_OPTS} -fix-missing
         fi
-        unity-meta-autofix ${AUTO_FIX_OPTS}
+        cat - | unity-meta-autofix ${AUTO_FIX_OPTS}
     else
-        cat
+        cat -
     fi
 }
 
@@ -34,14 +34,14 @@ function pr_comment() {
         fi
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
-        unity-meta-check-github-pr-comment \
+        cat - | unity-meta-check-github-pr-comment \
             -owner "${GITHUB_REPOSITORY%/*}" -repo "${GITHUB_REPOSITORY#*/}" \
             -pull "${PR_NUMBER}" \
             -api-endpoint "${GITHUB_API_URL}" \
             -lang "${INPUT_LANG}" \
             ${PR_COMMENT_OPTS}
     else
-        cat
+        cat -
     fi
 }
 
