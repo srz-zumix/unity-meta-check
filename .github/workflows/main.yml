@@ -1,0 +1,13 @@
+name: Develop
+on:
+  pull_request:
+
+jobs:
+  valid:
+    runs-on: ubuntu-latest
+    steps:
+    - name: clone
+      uses: actions/checkout@master
+    - uses: ./
+      with:
+        path: ./testdata/ValidProject
