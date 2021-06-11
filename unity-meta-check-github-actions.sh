@@ -1,12 +1,13 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -euo pipefail
 
 cd "${GITHUB_WORKSPACE}" || exit
 
 COMMON_ARGS=
 if "${INPUT_DEBUG}"; then
     COMMON_ARGS=${COMMON_ARGS} -debug
+    set -x
 fi
 if "${INPUT_SILENT}"; then
     COMMON_ARGS=${COMMON_ARGS} -silent
