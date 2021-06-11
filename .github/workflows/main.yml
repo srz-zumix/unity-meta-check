@@ -7,7 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: clone
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - uses: ./
       with:
         path: ./testdata/ValidProject
@@ -16,7 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: clone
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - uses: ./
       with:
         path: ./testdata/InvalidProject
@@ -27,7 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: clone
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
     - uses: ./
       with:
         path: ./testdata/InvalidProject
