@@ -4,7 +4,13 @@ set -euxo pipefail
 
 cd "${GITHUB_WORKSPACE}" || exit
 
-COMMON_ARGS="${INPUT_DEBUG}" "${INPUT_SILENT}"
+COMMON_ARGS=
+if "${INPUT_DEBUG}"; then
+    COMMON_ARGS=${COMMON_ARGS} -debug
+fi
+if "${INPUT_SILENT}"; then
+    COMMON_ARGS=${COMMON_ARGS} -silent
+fi
 
 function junit() {
     cat -
