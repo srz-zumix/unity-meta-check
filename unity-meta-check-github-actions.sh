@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 cd "${GITHUB_WORKSPACE}" || exit
 
 COMMON_ARGS="${INPUT_DEBUG}" "${INPUT_SILENT}"
