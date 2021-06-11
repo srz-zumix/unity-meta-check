@@ -23,3 +23,17 @@ jobs:
         debug: true
         auto_fix: true
         dry_run: true
+  junit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: clone
+      uses: actions/checkout@master
+    - uses: ./
+      with:
+        path: ./testdata/InvalidProject
+        debug: true
+        junit_result_path: output/junit_result.xml
+    - uses: actions/upload-artifact@v2
+      with:
+        name: unity-meta-check-junit-report
+        path: output/junit_result.xml
