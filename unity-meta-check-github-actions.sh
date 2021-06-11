@@ -14,7 +14,11 @@ if "${INPUT_SILENT}"; then
 fi
 
 function junit() {
-    cat -
+    if [ -n "${INPUT_JUNIT_RESULT_PATH}" ]; then
+        cat - | unity-meta-check-junit "${INPUT_JUNIT_RESULT_PATH}"
+    else
+        cat -
+    fi
 }
 
 function auto_fix() {
@@ -29,7 +33,8 @@ function auto_fix() {
         if "${INPUT_FIX_MISSING}"; then
             AUTO_FIX_OPTS+=" -fix-missing"
         fi
-        cat - | unity-meta-autofix ${AUTO_FIX_OPTS}
+        cat - | unity-meta-autofix -root-dir "${INPUT_PATH}" \
+            ${COMMON_ARGS} ${AUTO_FIX_OPTS}
     else
         cat -
     fi
@@ -48,7 +53,7 @@ function pr_comment() {
             -pull "${PR_NUMBER}" \
             -api-endpoint "${GITHUB_API_URL}" \
             -lang "${INPUT_LANG}" \
-            ${PR_COMMENT_OPTS}
+            ${COMMON_ARGS} ${PR_COMMENT_OPTS}
     else
         cat -
     fi
