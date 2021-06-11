@@ -1,4 +1,4 @@
-# FROM golang:1.15-alpine3.12 as builder
+FROM golang:1.15-alpine3.12 as builder
 # RUN apk add --no-cache make
 # WORKDIR /go/src/unity-meta-check
 # COPY . .
@@ -9,12 +9,14 @@
 # 	mv ./dist/unity-meta-autofix-linux-amd64 ./dist/unity-meta-autofix
 
 # FROM debian:buster-slim
-# # https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
-# RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
-# COPY --from=builder /go/src/unity-meta-check/dist/* /usr/bin/
-# COPY unity-meta-check-github-actions.sh /unity-meta-check-github-actions.sh
-# ENTRYPOINT ["unity-meta-check-github-actions"]
+# https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
+RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
+RUN git clone git@github.com:dena/unity-meta-check-bins /go/src/unity-meta-check-bins
 
-FROM docker.pkg.github.com/dena/unity-meta-check/unity-meta-check:latest
+# FROM debian:buster-slim
+# https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
+RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
+# COPY --from=builder /go/src/unity-meta-check/dist/* /usr/bin/
+COPY --from=builder /go/src/unity-meta-check-bins/linux-amd64/* /usr/bin/
+COPY unity-meta-check-github-actions.sh /unity-meta-check-github-actions.sh
 ENTRYPOINT ["unity-meta-check-github-actions"]
-CMD []
