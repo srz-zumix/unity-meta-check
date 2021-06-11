@@ -29,7 +29,7 @@ function auto_fix() {
 function pr_comment() {
     if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
         PR_COMMENT_OPTS=
-        if "${INPUT_TEMPLATE_FILE}"; then
+        if [ -n "${INPUT_TEMPLATE_FILE}" ]; then
             PR_COMMENT_OPTS=${PR_COMMENT_OPTS} -template-file "${INPUT_TEMPLATE_FILE}"
         fi
         PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
@@ -52,7 +52,7 @@ fi
 if "${INPUT_UNITY_PROJECT_SUB_DIR}"; then
     META_CHECK_OPTS=${META_CHECK_OPTS} -unity-project-sub-dir
 fi
-if "${INPUT_IGNORE_FILE}"; then
+if [ -n "${INPUT_IGNORE_FILE}" ]; then
     META_CHECK_OPTS=${META_CHECK_OPTS} -ignore-file "${INPUT_IGNORE_FILE}"
 fi
 if "${INPUT_IGNORE_DANGLING}"; then
