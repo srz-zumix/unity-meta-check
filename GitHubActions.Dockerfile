@@ -10,7 +10,7 @@
 
 FROM debian:buster-slim
 RUN apt-get update && apt-get install --no-install-recommends --yes git openssh-server tar gzip ca-certificates
-RUN git clone git@github.com:dena/unity-meta-check-bins /go/src/unity-meta-check-bins
+RUN git clone https://github.com/DeNA/unity-meta-check-bins.git /go/src/unity-meta-check-bins
 
 # FROM debian:buster-slim
 # https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
