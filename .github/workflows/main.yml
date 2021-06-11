@@ -12,3 +12,14 @@ jobs:
       with:
         path: ./testdata/ValidProject
         debug: true
+  auto_fix:
+    runs-on: ubuntu-latest
+    steps:
+    - name: clone
+      uses: actions/checkout@master
+    - uses: ./
+      with:
+        path: ./testdata/InvalidProject
+        debug: true
+        auto_fix: true
+        dry_run: true
