@@ -109,24 +109,6 @@ runs:
   image: 'GitHubActions.Dockerfile'
   env:
     GITHUB_TOKEN: ${{ inputs.token }}
-  # args:
-  #   - ${{ inputs.path }}
-  #   - ${{ inputs.debug }}
-  #   - ${{ inputs.silent }}
-  #   - ${{ inputs.unity_project }}
-  #   - ${{ inputs.unity_project_sub_dir }}
-  #   - ${{ inputs.ignore_file }}
-  #   - ${{ inputs.ignore_dangling }}
-  #   - ${{ inputs.ignore_submodules }}
-  #   - ${{ inputs.no_ignore_case }}
-  #   - ${{ inputs.auto_fix }}
-  #   - ${{ inputs.auto_fix_paths }}
-  #   - ${{ inputs.dry_run }}
-  #   - ${{ inputs.fix_dangling }}
-  #   - ${{ inputs.fix_missing }}
-  #   - ${{ inputs.junit_result_path }}
-  #   - ${{ inputs.lang }}
-  #   - ${{ inputs.template_file }}
 branding:
   icon: 'image'
   color: 'green'
