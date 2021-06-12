@@ -7,7 +7,7 @@ cd "${GITHUB_WORKSPACE}" || exit
 COMMON_ARGS=
 if "${INPUT_DEBUG}"; then
     COMMON_ARGS+=" -debug"
-    set -x
+    set -euxo pipefail
 fi
 if "${INPUT_SILENT}"; then
     COMMON_ARGS+=" -silent"
