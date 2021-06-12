@@ -29,7 +29,9 @@ jobs:
         dry_run: true
     - run: |
         git diff
+      if: failure()
     - name: Create Pull Request
+      if: failure()
       uses: peter-evans/create-pull-request@v3
       with:
         base: ${{ github.base_ref }}
